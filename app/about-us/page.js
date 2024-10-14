@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 
 export default function AboutUs () {
     return (
@@ -7,10 +7,18 @@ export default function AboutUs () {
             <p className="text-2xl pt-2 text-center text-white">Early Code empowers and creates the platform for <br></br>experts to teach everyone technical skills that count.</p>
 
             <div className="">
-                <div className="flex justify-center gap-60">
-                    <img src="https://via.placeholder.com/150" className="pt-12 " alt=""></img>
-                    <img src="https://via.placeholder.com/150" className="pt-12 " alt=""></img>
-                    <img src="https://via.placeholder.com/150" className="pt-12 " alt=""></img>
+                <div className="flex justify-center gap-[140px] pt-14  ">
+                    <div className="bg-gradient-to-t from-blue-500 to-yellow-600 rounded-full p-1">
+                        <Image width={240} height={220} className="rounded-full " src="/instructor.webp" alt="profile pic"/>
+                    </div>
+                    
+                    <div className="bg-gradient-to-t from-blue-500 to-yellow-600 rounded-full p-1">
+                        <Image width={240} height={220} className="rounded-full" src="/students.webp" alt="download"/>
+                    </div>
+
+                    <div className="bg-gradient-to-t from-blue-500 to-yellow-600 rounded-full p-1">
+                        <Image width={240} height={220} className="rounded-full" src="/study-materials.webp" alt="materials"/>
+                    </div>
                 </div>
                 
                 <div className="flex text-center gap-20 ml-24 text-white">
@@ -41,20 +49,20 @@ export default function AboutUs () {
 
                     <div className="bg-gray-500 w-[280px] h-[260px] rounded-xl my-20">
                         <p className="text-2xl font-bold pt-8 ml-8">more than </p>
-                        <p className="ml-8 font-bold text-7xl pt-6">1,500 </p>
-                        <p className="text-2xl font-bold ml-8 pt-6">students trained</p>
+                        <p className="ml-8 font-bold text-7xl pt-6">1,008 </p>
+                        <p className="text-2xl font-bold ml-8 pt-6">hours spent on practical lessons</p>
                     </div>
 
                     <div className="bg-gray-500 w-[280px] h-[260px] rounded-xl my-20">
                         <p className="text-2xl font-bold pt-8 ml-8">more than </p>
-                        <p className="ml-8 font-bold text-7xl pt-6">1,500 </p>
-                        <p className="text-2xl font-bold ml-8 pt-6">students trained</p>
+                        <p className="ml-8 font-bold text-7xl pt-6">98% </p>
+                        <p className="text-2xl font-bold ml-8 pt-6">student completion rate</p>
                     </div>
 
                     <div className="bg-gray-500 w-[280px] h-[260px] rounded-xl my-20">
-                        <p className="text-2xl font-bold pt-8 ml-8">more than </p>
-                        <p className="ml-8 font-bold text-7xl pt-6">1,500 </p>
-                        <p className="text-2xl font-bold ml-8 pt-6">students trained</p>
+                        <p className="text-2xl font-bold pt-8 ml-8">rated </p>
+                        <p className="ml-8 font-bold text-7xl pt-6">4.8</p>
+                        <p className="text-2xl font-bold ml-8 pt-6">on Google</p>
                     </div>
                 </div>
               
