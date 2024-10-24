@@ -49,11 +49,14 @@ export default function Borrow () {
                                 onClick={() => {
                                     setClickedRate(item.id)
                                     if (item.days === 7) {
-                                        [setRate(15.5), setLoanduration(7)]
+                                        setRate(15.5); 
+                                        setLoanduration(7)
                                     } else if (item.days === 30) {
-                                        [setRate(12), setLoanduration(30)]
+                                        setRate(12);
+                                        setLoanduration(30)
                                     } else if (item.days === 90) {
-                                        [setRate(9.5), setLoanduration(90)]
+                                        setRate(9.5);
+                                        setLoanduration(90)
                                     }
                                 }}
                                 className={`h-16 flex justify-center items-center bg-blue-700 text-white text-md uppercase rounded-md`}>{item.days} days</li>)
