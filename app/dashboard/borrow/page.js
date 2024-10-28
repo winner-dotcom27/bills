@@ -1,6 +1,9 @@
 "use client"
 import { useState,useEffect} from "react";
 import { TextField } from "@mui/material";
+import { db } from "@/config/firebase.config";
+import { addDoc,collection } from "firebase/firestore";
+import { CircularProgress } from "@mui/material";
 
 const duration = [
     {id:"7d",days:7},
@@ -13,6 +16,7 @@ export default function Borrow () {
     const [amount,setAmount] = useState(undefined);
     const [payback,setPayback] = useState(0);
     const [loanduration,setLoanduration] = useState(0);
+    const [opsProgress,setOpsProgress] = useState(false)
 
     useEffect(() => {
         if (amount >= 1) {
@@ -74,8 +78,9 @@ export default function Borrow () {
                     <p className="text-4xl text-white">₦{payback}</p>
                 </div>
 
-                <div>
+                <div className="flex items-center gap-1">
                     <button className="p-2 rounded-md bg-blue-600 text-white text-xl uppercase">Get Loan</button>
+                    <CircularProgress style={{display:!opsProgress ? "none" : "flex"}}/>
                 </div>
             </div>
         </main>
