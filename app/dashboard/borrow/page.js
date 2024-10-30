@@ -4,6 +4,12 @@ import { TextField } from "@mui/material";
 import { db } from "@/config/firebase.config";
 import { addDoc,collection } from "firebase/firestore";
 import { CircularProgress } from "@mui/material";
+import {  }  from "formik";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+    amount: yup.number().required().min(1000),
+})
 
 const duration = [
     {id:"7d",days:7},
@@ -13,17 +19,26 @@ const duration = [
 export default function Borrow () {
     const [clickedRate,setClickedRate] = useState(undefined);
     const [rate,setRate] = useState(0);
-    const [amount,setAmount] = useState(undefined);
     const [payback,setPayback] = useState(0);
     const [loanduration,setLoanduration] = useState(0);
     const [opsProgress,setOpsProgress] = useState(false)
 
     useEffect(() => {
-        if (amount >= 1) {
-            const interest = (rate * amount) / 100;
-            setPayback(amount + interest)
+        if (values.amount >= 1) {
+            const interest = (rate * values.amount) / 100;
+            setPayback(values.amount + interest)
         }    
-    },[amount,rate])
+    },[values.amount,rate]);
+
+    const { handleSubmit,handleChange,values,touched,errors } = useFormik({
+        initialValues:{
+            amount: undefined
+        },
+        onSubmit: () => {
+
+        },
+        validationSchema:schema
+    })
 
     return (
         <main className="min-h-screen flex justify-center py-4 md:py-6 lg:py-8 px-4 md:px-12 lg:px-16 bg-gray-100">
@@ -32,15 +47,16 @@ export default function Borrow () {
                     <span className="font-thin text-lg text-blue-800">Get an Instant Loan</span>
                 </blockquote>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-1">
                         <TextField
                         id="amount"
                         type="number"
                         variant="outlined"
                         placeholder="loan amount"
-                        value={amount}
-                        onChange={(text) => setAmount(Number(text.target.value))}/>
+                        value={values.amount}
+                        onChange={handleChange}/>
+                        {touched.amount && errors.amount ? <span className="text-xs text-red-500">{errors.amount}</span> : null}
                     </div>  
                 </form>
 
