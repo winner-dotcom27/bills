@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function AboutUs () {
     return (
         <div className=" bg-black px-3 md:px-8 lg:px-16 pt-20">
-            <h1 className="font-bold text-6xl text-center text-white">We are providing an <br></br>education that <br></br>empowers</h1>
-            <p className="text-2xl pt-2 text-center text-white">Early Code empowers and creates the platform for <br></br>experts to teach everyone technical skills that count.</p>
+            <h1 className="font-bold text-6xl text-center text-white">We are providing <br></br>instant loans that help <br></br>solves people's day-to-day needs </h1>
+            <p className="text-2xl pt-2 text-center text-white">Bills app empowers and creates the platform for <br></br>our teeming customers to access quick loans with flexible payback options.</p>
 
             <div className="">
                 <div className="flex justify-center gap-[140px] pt-14  ">
@@ -22,22 +22,22 @@ export default function AboutUs () {
                 </div>
                 
                 <div className="flex text-center gap-20 ml-24 text-white">
-                    <p className="">We understand that prospective students <br></br>want to achieve master, so we provided<br></br>experienced and skilled instructors</p> 
+                    <p className="">We understand that prospective customers <br></br>want to access quick loans, so we provided<br></br>seamless means to do just that</p> 
   
-                    <p>Since technology or software development <br></br>needs vibrant collaboration, we created<br></br> physical classes for instructor-students<br></br> collaboration</p>  
+                    <p>Most times, paying back loans can be difficult due to<br></br> financial needs of clients, therefore, we developed<br></br>very easy ways to assist repayment</p>  
 
-                    <p>We understand that study materials can <br></br>help the student raise the bar, so we<br></br> created after-class study contents</p>
+                    <p>We understand how harsh the economy is, so we made  <br></br>sure to reduce interest rates on loans collected <br></br> to the barest minimum</p>
                 </div>
 
                 <div className="text-center pt-14">
-                    <h2 className="text-4xl font-bold text-blue-400">Our Passion and Excellence</h2>
-                    <p  className="text-white">In Early Code our passion is to coach and help people to acquire the tech skills they need to excel. As a tech institution, we strive to make tech more <br></br>approachable and most importantly, applicable to the students. We focus more on practical skills to ensure our learners and trainees are well equipped <br></br>and proficient in their chosen paths. Courses are designed to be project-based to enable participants gain lots of experience even while in training.</p>
+                    <h2 className="text-4xl font-bold text-blue-400">Our Mission</h2>
+                    <p  className="text-white">Our mission is to empower individuals and businesses by providing accessible, transparent, and flexible loan solutions that meet their<br></br> unique financial needs. We strive to enhance financial literacy, foster trust, and support our users in achieving <br></br>their goals, all while leveraging technology to streamline the borrowing process.</p>
                 </div>
                 
 
                 <div className="text-center pt-14">
-                    <h2 className="text-4xl font-bold text-blue-400">We Have Seen That Our Work Counts</h2>
-                    <p className="text-white">Some of our graduates now work with some reputable organizations while some have been able to create enterprise opportunities for themselves. Our <br></br>principal goal is to create sufficient software developers and tech talents in Nigeria and other African countries.</p>
+                    <h2 className="text-4xl font-bold text-blue-400">Our Vision</h2>
+                    <p className="text-white">Our vision is to revolutionize the borrowing experience by creating a world where everyone has easy access to fair and responsible financial <br></br>solutions. We aim to be a trusted partner in our user's financial journeys, leveraging innovative technology <br></br>to foster inclusion and empower individuals and businesses to achieve their dreams.</p>
                 </div>
 
                 <div className="flex gap-10">
