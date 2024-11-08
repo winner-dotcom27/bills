@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutUs () {
     return (
-        <div className=" bg-black px-3 md:px-8 lg:px-16 pt-20">
+        <div className="min-h-screen bg-gray-900 px-3 md:px-8 lg:px-16 pt-20">
             <h1 className="font-bold text-6xl text-center text-white">We are providing <br></br>instant loans that help <br></br>solves people's day-to-day needs </h1>
             <p className="text-2xl pt-2 text-center text-white">Bills app empowers and creates the platform for <br></br>our teeming customers to access quick loans with flexible payback options.</p>
 
@@ -21,7 +21,7 @@ export default function AboutUs () {
                     </div>
                 </div>
                 
-                <div className="flex text-center gap-20 ml-24 text-white">
+                <div className="flex text-center gap-18 ml-24 text-white">
                     <p className="">We understand that prospective customers <br></br>want to access quick loans, so we provided<br></br>seamless means to do just that</p> 
   
                     <p>Most times, paying back loans can be difficult due to<br></br> financial needs of clients, therefore, we developed<br></br>very easy ways to assist repayment</p>  

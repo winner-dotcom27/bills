@@ -13,15 +13,12 @@ const schema = yup.object().shape({
     amount: yup.number().required().min(1),
 });
 
-//github.com/fallyfox/bills
 
 export default function History () {
     const [loan,setLoan] = React.useState(null);
     const [totalOffsets,setTotalOffsets] = React.useState(0);
 
     const docId = useSearchParams().get("doc_id")
-
-    console.log(docId)
 
     React.useEffect(() => {
         const handleDocFetch = async () => {
@@ -75,7 +72,7 @@ export default function History () {
                         <li className="text-lg text-gray-700 text-end">{}</li>
                     </ul>
                     <ul className="grid grid-cols-2 pb-3 mb-3 border-b border-gray-100">
-                        <li className="text-lg text-gray-700 uppercase">Total Upsets</li>
+                        <li className="text-lg text-gray-700 uppercase">Total Offsets</li>
                         <li className="text-lg text-gray-700 text-end">₦{}</li>
                     </ul>
 
