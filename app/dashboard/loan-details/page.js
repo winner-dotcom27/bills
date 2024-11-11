@@ -1,5 +1,6 @@
 "use client"
 import React from "react";
+import { AppContext } from "@/config/context.config";
 import { useSearchParams } from "next/navigation";
 import { db } from "@/config/firebase.config";
 import { doc,getDoc } from "firebase/firestore"
@@ -9,20 +10,21 @@ import * as yup from "yup";
 import {TextField,Button} from "@mui/material";
 
 
+
 const schema = yup.object().shape({
     amount: yup.number().required().min(1),
 });
 
 
 export default function History () {
+    const {loanDocId} = React.useContext(AppContext);
     const [loan,setLoan] = React.useState(null);
     const [totalOffsets,setTotalOffsets] = React.useState(0);
 
-    const docId = useSearchParams().get("doc_id")
 
     React.useEffect(() => {
         const handleDocFetch = async () => {
-            const docRef = doc(db,"loans",docId);
+            const docRef = doc(db,"loans",loanDocId);
             const res = await getDoc(docRef);
 
             if (res.exists()) {
