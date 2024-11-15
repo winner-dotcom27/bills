@@ -33,7 +33,7 @@ export function Borrow ({userId}) {
 
             await addDoc(collection(db,"loans"),{
                 // user: "dummy"
-                user: userId,
+                user:userId,
                 amount: values.amount,
                 payback:payback,
                 rate:rate,
@@ -103,10 +103,7 @@ export function Borrow ({userId}) {
                         }
                     </ul>
                 </div>
-                    <div className="flex items-center gap-1 mt-1">
-                        <button className="p-2 rounded-md bg-blue-600 text-white text-xl uppercase">Get Loan</button>
-                        <CircularProgress style={{display:!opsProgress ? "none" : "flex"}}/>
-                    </div>
+                    
                 </form>
 
                 <div className="flex flex-col gap-3 border-dashed border border-blue-500 p-4 rounded-md">
@@ -117,6 +114,11 @@ export function Borrow ({userId}) {
                 <div className="flex flex-col gap-3 bg-gradient-to-b from-blue-600 to-blue-800 border-dashed border border-blue-500 p-4 rounded-md">
                     <p className="text-blue-50">You will pay back</p>
                     <p className="text-4xl text-white">₦{payback}</p>
+                </div>
+
+                <div className="flex items-center gap-1 mt-1">
+                    <button className="p-2 rounded-md bg-blue-600 text-white text-xl uppercase">Get Loan</button>
+                    <CircularProgress style={{display:!opsProgress ? "none" : "flex"}}/>
                 </div>
 
                
