@@ -3,12 +3,13 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { AppContext } from "@/config/context.config";
 import { db } from "@/config/firebase.config";
-import { doc,getDoc } from "firebase/firestore"
+import { doc,getDoc,updateDoc,addDoc,collection } from "firebase/firestore"
 import { Skeleton } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {TextField,Button} from "@mui/material";
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
+import { sumFromArray } from "@/utils/sum_from_array";
 
 
 const schema = yup.object().shape({
@@ -19,7 +20,8 @@ const schema = yup.object().shape({
 export default function LoanDetails ({user}) {
     const {loanDocId} = React.useContext(AppContext);
     const [loan,setLoan] = React.useState(null);
-    const [totalOffsets,setTotalOffsets] = React.useState(0);
+    const [offSets,setOffsets] = React.useState([]);
+    const [totalOffSets,setTotalOffsets] = React.useState(0);
     const [validateAmount,setValidateAmount] = React.useState(false);
 
     const router = useRouter();
@@ -46,12 +48,18 @@ export default function LoanDetails ({user}) {
         handleDocFetch()
     },[]);
 
+    // retrieve loan offsets, to be used in update
+    React.useEffect(() => {
+        loan !== null ? setOffsets(loan.offSets) : null;
+        loan?.offSets ? setTotalOffsets(sumFromArray(loan?.offSets)) : null;
+    },[loan]);
+
     
     const { handleSubmit,handleChange,touched,errors,values } = useFormik({
         initialValues: {amount:undefined},
         onSubmit: () => {
             setValidateAmount(true);
-            //console.log(values.amount)
+            
         },
         validationSchema:schema
     });
@@ -63,6 +71,7 @@ export default function LoanDetails ({user}) {
         }
     },[values.amount])
 
+
     // >>> FLUTTERWAVE COMPONENTS <<<<<<
     const config = {
         public_key: 'FLWPUBK_TEST-07eb955aba643e63f3c057bd00d016ff-X',
@@ -72,7 +81,7 @@ export default function LoanDetails ({user}) {
         payment_options: 'card,mobilemoney,ussd',
         customer: {
           email: user?.email,
-          phone_number: '0708888367',
+          phone_number: '07088883671',
           name: user?.name,
         },
         customizations: {
@@ -85,8 +94,29 @@ export default function LoanDetails ({user}) {
       const fwConfig = {
         ...config,
         text: 'Make Payment',
-        callback: (response) => {
-            console.log(response);
+        callback: async (response) => {
+            const docId = await addDoc(collection(db,"payments"),{
+                amount: Math.round(values.amount),
+                responseCode: response.charge_response_code,
+                currency: response.currency,
+                flwRef: response.flw_ref,
+                txRef: response.tx_ref,
+                status: response.status,
+                user: user.id,
+                loanId: loanDocId,
+                timecreated: new Date().getTime()
+            });
+
+            const reLoanOffSets = offSets;
+            reLoanOffSets.push({
+                amount: values.amount,
+                paymentDocId: docId.id
+            })
+
+            await updateDoc(doc(db,"loans",loanDocId),{
+                offSets: reLoanOffSets
+            });
+            
             closePaymentModal() // this will close the modal programmatically
         },
         onClose: () => {},
@@ -124,12 +154,16 @@ export default function LoanDetails ({user}) {
                     </ul>
                     <ul className="grid grid-cols-2 pb-3 mb-3 border-b border-gray-100">
                         <li className="text-lg text-gray-700 uppercase">Total Offsets</li>
-                        <li className="text-lg text-gray-700 text-end">₦{}</li>
+                        <li className="text-lg text-gray-700 text-end">
+                            ₦{totalOffSets}
+                        </li>
                     </ul>
+
+{/* joseph.ogbu@earlycode.net  tracks.earlycode.net */}
 
                     <form 
                     onSubmit={handleSubmit} 
-                    style={{display:totalOffsets >= loan.amount ? "none" : "block"}}
+                    style={{display:totalOffSets >= loan.payback ? "none" : "block"}}
                     className="bg-gray-200 p-4 rounded-md">
                         <div className="flex flex-col gap-1 mb-2">
                             <label className="text-xs text-gray-700">Offset this loan</label>

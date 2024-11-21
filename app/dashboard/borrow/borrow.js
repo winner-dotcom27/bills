@@ -100,10 +100,9 @@ export function Borrow ({userId}) {
                                     }
                                 }}
                                 className={`h-16 flex justify-center items-center bg-blue-700 text-white text-md uppercase rounded-md`}>{item.days} days</li>)
-                        }
-                    </ul>
-                </div>
-                    
+                            }
+                        </ul>
+                    </div>          
                 </form>
 
                 <div className="flex flex-col gap-3 border-dashed border border-blue-500 p-4 rounded-md">
